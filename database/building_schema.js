@@ -11,7 +11,8 @@ var buildingSchema = mongoose.Schema({
     //upgrade
     area:{type:Number},
     part_time_job:{number:Number, money:Number},
-    prefabName:{type:String},
+    prefab_name:{type:String},
+    map_name:{type:String},
 });
 
 console.log('bildingSchema 정의함.');
