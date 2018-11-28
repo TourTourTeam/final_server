@@ -52,7 +52,7 @@ function(req,res,next){
 router.get('/:id',function(req,res,next){
     var database= app.get('database');
     var Parttime = database.ParttimeModel;
-    Parttime.findOne({id:req.params.id})
+    Parttime.findOne({_id:req.params.id})
     .exec(function(err,parttime){
         if(err){
             res.status(500);
@@ -70,7 +70,7 @@ router.get('/:id',function(req,res,next){
 router.put('/:id',function(req,res,next){
     var database= app.get('database');
     var Parttime = database.ParttimeModel;
-    Parttime.findOneAndUpdate({id:req.params.id}, req.body)
+    Parttime.findOneAndUpdate({_id:req.params.id}, req.body)
     .exec(function(err,parttime){
         if(err){
             res.status(500);
@@ -88,7 +88,26 @@ router.put('/:id',function(req,res,next){
 router.get('/building/:building_id',function(req,res,next){
     var database= app.get('database');
     var Building = database.BuildingModel;
-    Building.findOne({id : req.params.building_id})
+    Building.findOne({building_id : req.params.building_id})
+    .exec(function(err,building){
+        if(err){
+            res.status(500);
+            res.json({success:false,err:"!"+err});
+        }
+        else if(!building){
+            res.json({success:false, err:"building not found"});
+        }
+        else{
+            res.json({success:true,data:building});
+        }
+    });
+});
+
+
+router.get('/user/:user_id',function(req,res,next){
+    var database= app.get('database');
+    var Building = database.BuildingModel;
+    Building.findOne({user_id : req.params.user_id})
     .exec(function(err,building){
         if(err){
             res.status(500);

@@ -52,7 +52,7 @@ router.get('/',function(req,res,next){
  router.get('/:id',function(req,res,next){
     var database= app.get('database');
     var Map = database.MapModel;
-     Map.findOne({id:req.params.id})
+     Map.findOne({_id:req.params.id})
      .exec(function(err,map){
          if(err){
              res.status(500);
@@ -70,7 +70,7 @@ router.get('/',function(req,res,next){
  router.put('/:id',function(req,res,next){
     var database= app.get('database');
     var Map = database.MapModel;
-     Map.findOneAndUpdate({id:req.params.id}, req.body)
+     Map.findOneAndUpdate({_id:req.params.id}, req.body)
      .exec(function(err,map){
          if(err){
              res.status(500);

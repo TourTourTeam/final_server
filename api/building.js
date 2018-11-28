@@ -51,7 +51,7 @@ function(req,res,next){
 router.get('/:id',function(req,res,next){
     var database= app.get('database');
     var Building = database.BuildingModel;
-    Building.findOne({id:req.params.id})
+    Building.findOne({_id:req.params.id})
     .exec(function(err,building){
         if(err){
             res.status(500);
@@ -69,7 +69,7 @@ router.get('/:id',function(req,res,next){
 router.put('/:id',function(req,res,next){
     var database= app.get('database');
     var Building = database.BuildingModel;
-    Building.findOneAndUpdate({id:req.params.id}, req.body)
+    Building.findOneAndUpdate({_id:req.params.id}, req.body)
     .exec(function(err,building){
         if(err){
             res.status(500);
@@ -87,7 +87,7 @@ router.put('/:id',function(req,res,next){
 router.get('/map/:map_id',function(req,res,next){
     var database= app.get('database');
     var Map = database.MapModel;
-    Map.findOne({id : req.params.map_id})
+    Map.findOne({map_id : req.params.map_id})
     .exec(function(err,map){
         if(err){
             res.status(500);
