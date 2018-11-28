@@ -16,8 +16,6 @@ var UserSchema = mongoose.Schema({
     },
     character_shape_name:{type:String},
     money : {type : Number, 'default' : 0},
-    //building_list
-    //part_time job infor
     created_at: {type: Date, index: {unique: false}, 'default': Date.now},
 	  updated_at: {type: Date, index: {unique: false}, 'default': Date.now}
 });
