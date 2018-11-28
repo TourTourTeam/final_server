@@ -1,6 +1,6 @@
 module.exports = {
 	server_port: 3000,
-	db_url: 'mongodb://localhost:27017/tour',
+	db_url: 'mongodb://root:root@ec2-3-17-12-105.us-east-2.compute.amazonaws.com:27017/tour',
 	db_schemas: [
 		{file:'./user_schema', collection:'users', schemaName:'UserSchema', modelName:'UserModel'},
 		{file:'./building_schema', collection:'building', schemaName:'BuildingSchema', modelName:'BuildingModel'},
