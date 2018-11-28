@@ -2,7 +2,7 @@ var Schema = {};
 
 Schema.createSchema = function(mongoose) {
 var parttimeSchema = mongoose.Schema({
-    id: {type: String, required: true, unique: true},
+    id: {type: String, required: true},
     user_id : { type: String, required:true, 'default':''},
     building_id:{type:String, required:true},
     pay:{type:String,min:0},
