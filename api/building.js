@@ -103,19 +103,17 @@ router.get('/map/:map_id',function(req,res,next){
 });
 router.get('/map_name/:map_name',function(req,res,next){
     var database= app.get('database');
-    var Map = database.MapModel;
-    Map.findOne({map_name : req.params.map_name})
-    .exec(function(err,map){
-        if(err){
-            res.status(500);
-            res.json({success:false,err:"!"+err});
-        }
-        else if(!map){
-            res.json({success:false, err:"map not found"});
-        }
-        else{
-            res.json({success:true,data:map});
-        }
-    });
+    var Building = database.BuildingModel;
+   Building.find({map_name : req.params.map_name})
+   .sort({id:1})
+   .exec(function(err,building){
+       if(err){
+           res.status(500);
+           res.json({success:false, err:"!"+err});
+       }
+       else{
+           res.json({success:true, data:building})
+       }
+   });
 });
 };
