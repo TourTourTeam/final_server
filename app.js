@@ -85,7 +85,7 @@ app.use('/', router);
 
 var routerAPI= express.Router();
 var userAPI=require('./api/user');
-userAPI(app,routerAPI,database);
+userAPI(app,routerAPI);
 app.use('/api/user', routerAPI);
 
 var routerAPI= express.Router();
