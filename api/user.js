@@ -75,6 +75,8 @@ router.get('/',function(req,res,next){
  });
  router.post('/delete/:id',
   function(req, res, next){
+    var database= app.get('database');
+    var User=database.UserModel;
     User.findOneAndRemove({id:req.params.id})
     .exec(function(err, hero){
       if(err) {

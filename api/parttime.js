@@ -104,7 +104,9 @@ router.get('/building/:building_id',function(req,res,next){
 });
 router.post('/delete/:id',
   function(req, res, next){
-    User.findOneAndRemove({_id:req.params.id})
+    var database= app.get('database');
+    var Parttime = database.ParttimeModel;
+    Parttime.findOneAndRemove({_id:req.params.id})
     .exec(function(err, hero){
       if(err) {
         res.status(500);
@@ -122,8 +124,8 @@ router.post('/delete/:id',
 
 router.get('/user/:user_id',function(req,res,next){
     var database= app.get('database');
-    var Building = database.BuildingModel;
-    Building.findOne({user_id : req.params.user_id})
+    var Parttime = database.ParttimeModel;
+    Parttime.findOne({user_id : req.params.user_id})
     .exec(function(err,building){
         if(err){
             res.status(500);

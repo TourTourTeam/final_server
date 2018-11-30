@@ -3,7 +3,9 @@ module.exports=function(app,router,database){
 
 
 router.post('/delete/:id',function(req, res, next){
-    User.findOneAndRemove({_id:req.params.id})
+    var database= app.get('database');
+    var Map = database.MapModel;
+    Map.findOneAndRemove({_id:req.params.id})
     .exec(function(err, hero){
       if(err) {
         res.status(500);
