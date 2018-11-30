@@ -77,6 +77,7 @@ router.get('/',function(req,res,next){
  router.put('/:id',function(req,res,next){
     var database= app.get('database');
     var User=database.UserModel;
+    console.log('make object');
      User.findOneAndUpdate({id:req.params.id}, JSON.parse(req.body))
      .exec(function(err,user){
          if(err){
