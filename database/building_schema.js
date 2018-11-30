@@ -3,6 +3,7 @@ var Schema = {};
 Schema.createSchema = function(mongoose) {
 var buildingSchema = mongoose.Schema({
     id: {type: String, required: true},
+    building_name : {type: String},
     owner_id:{type:String},
     pos:{x:Number,y:Number,z:Number},
     price:{cur:{type:Number,min:0},
