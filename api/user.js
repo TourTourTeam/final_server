@@ -74,6 +74,26 @@ router.get('/',function(req,res,next){
      });
  });
  
+ router.put('/update/:id',function(req,res,next){
+    var database= app.get('database');
+    var User=database.UserModel;
+    console.log('make object');
+    console.log(JSON.parse(req.body.update));
+     User.findOneAndUpdate({id:req.params.id}, JSON.parse(req.body.update))
+     .exec(function(err,user){
+         if(err){
+             res.status(500);
+             res.json({success:false, err:"!"+err});
+         }
+         else if(!user){
+             res.json({success:false, err:"user not found"});
+         }
+         else{
+             res.json({success:true});
+         }
+     });
+ });
+
  router.put('/:id',function(req,res,next){
     var database= app.get('database');
     var User=database.UserModel;
