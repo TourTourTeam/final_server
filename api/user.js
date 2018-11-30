@@ -39,7 +39,7 @@ router.get('/',function(req,res,next){
     var User=database.UserModel;
     console.log(req.body.data);
      var newUser = new User(req.body.data);
-     newUser.id=res.locals.lastId+1;
+     //newUser.id=res.locals.lastId+1;
      newUser.save(function(err,user){
          if(err){
              res.status(500);
