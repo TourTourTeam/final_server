@@ -73,7 +73,23 @@ router.get('/',function(req,res,next){
          }
      });
  });
- 
+ router.post('/delete/:id',
+  function(req, res, next){
+    User.findOneAndRemove({id:req.params.id})
+    .exec(function(err, hero){
+      if(err) {
+        res.status(500);
+        res.json({success:false, message:err});
+      }
+      else if(!hero){
+        res.json({success:false, message:"user not found"});
+      }
+      else {
+        res.json({success:true});
+      }
+    });
+  }
+);
  router.post('/update/:id',function(req,res,next){
     var database= app.get('database');
     var User=database.UserModel;
