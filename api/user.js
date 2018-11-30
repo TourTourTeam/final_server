@@ -74,7 +74,7 @@ router.get('/',function(req,res,next){
      });
  });
  
- router.put('/update/:id',function(req,res,next){
+ router.post('/update/:id',function(req,res,next){
     var database= app.get('database');
     var User=database.UserModel;
     console.log('make object');
