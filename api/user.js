@@ -37,7 +37,7 @@ router.get('/',function(req,res,next){
  function(req,res,next){
     var database= app.get('database');
     var User=database.UserModel;
-     var newUser = new User(req.body);
+     var newUser = new User(req.body.data);
      newUser.id=res.locals.lastId+1;
      newUser.save(function(err,user){
          if(err){
