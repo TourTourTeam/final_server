@@ -40,6 +40,7 @@ router.get('/',function(req,res,next){
     console.log(req.body.data);
      var newUser = new User(req.body.data);
      //newUser.id=res.locals.lastId+1;
+     console.log('before save');
      newUser.save(function(err,user){
          console.log(err);
          console.log(user);
