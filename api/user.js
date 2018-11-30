@@ -41,11 +41,14 @@ router.get('/',function(req,res,next){
      var newUser = new User(req.body.data);
      //newUser.id=res.locals.lastId+1;
      newUser.save(function(err,user){
+         console.log(err);
+         console.log(user);
          if(err){
              res.status(500);
              res.json({success:false, err:"!"+err});
          }
          else{
+             console.log("success");
              res.json({success:true, data:user});
          }
      })
