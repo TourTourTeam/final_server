@@ -1,4 +1,24 @@
 module.exports=function(app,router,database){
+
+    router.post('/update/:id',function(req,res,next){
+        var database= app.get('database');
+        var Building = database.BuildingModel;
+        console.log(JSON.parse(req.body.update));
+         User.findOneAndUpdate({_id:req.params.id}, JSON.parse(req.body.update))
+         .exec(function(err,user){
+             if(err){
+                 res.status(500);
+                 res.json({success:false, err:"!"+err});
+             }
+             else if(!user){
+                 res.json({success:false, err:"user not found"});
+             }
+             else{
+                 res.json({success:true});
+             }
+         });
+     });
+
 router.post('/delete/:id',function(req, res, next){
     var database= app.get('database');
     var Building = database.BuildingModel;

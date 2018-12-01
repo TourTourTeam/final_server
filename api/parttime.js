@@ -1,6 +1,24 @@
 
 module.exports=function(app,router,database){
-    
+
+    router.post('/update/:id',function(req,res,next){
+        var database= app.get('database');
+        var Parttime = database.ParttimeModel;
+        console.log(JSON.parse(req.body.update));
+         User.findOneAndUpdate({_id:req.params.id}, JSON.parse(req.body.update))
+         .exec(function(err,user){
+             if(err){
+                 res.status(500);
+                 res.json({success:false, err:"!"+err});
+             }
+             else if(!user){
+                 res.json({success:false, err:"user not found"});
+             }
+             else{
+                 res.json({success:true});
+             }
+         });
+     });
 router.get('/',function(req,res,next){
     var database= app.get('database');
     var Parttime = database.ParttimeModel;
