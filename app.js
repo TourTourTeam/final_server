@@ -78,8 +78,11 @@ var userPassport = require('./routes/user_passport');
 userPassport(router, passport, app);
 app.use('/', router);
 //app.use('/user', userPassport());
+var accessRouter=express.Router();
 
-
+accessRouter.route('/access_term').get(function(req,res){
+	res.redirect('./public/access_term.html');
+});
 
 //api 설정
 
