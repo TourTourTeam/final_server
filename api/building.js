@@ -1,10 +1,25 @@
 module.exports=function(app,router,database){
 
+    router.get('/map_name/:map_name',function(req,res,next){
+        var database= app.get('database');
+        var Building = database.BuildingModel;
+       Building.find({map_name : req.params.map_name})
+       .sort({id:1})
+       .exec(function(err,building){
+           if(err){
+               res.status(500);
+               res.json({success:false, err:"!"+err});
+           }
+           else{
+               res.json({success:true, data:building})
+           }
+       });
+    });
     router.post('/update/:id',function(req,res,next){
         var database= app.get('database');
         var Building = database.BuildingModel;
         console.log(JSON.parse(req.body.update));
-         User.findOneAndUpdate({_id:req.params.id}, JSON.parse(req.body.update))
+         Building.findOneAndUpdate({_id:req.params.id}, JSON.parse(req.body.update))
          .exec(function(err,user){
              if(err){
                  res.status(500);
@@ -22,7 +37,7 @@ module.exports=function(app,router,database){
 router.post('/delete/:id',function(req, res, next){
     var database= app.get('database');
     var Building = database.BuildingModel;
-    User.findOneAndRemove({_id:req.params.id})
+    Building.findOneAndRemove({_id:req.params.id})
     .exec(function(err, hero){
       if(err) {
         res.status(500);
@@ -121,36 +136,5 @@ router.put('/:id',function(req,res,next){
     });
 });
 
-router.get('/map/:map_id',function(req,res,next){
-    var database= app.get('database');
-    var Map = database.MapModel;
-    Map.findOne({map_id : req.params.map_id})
-    .exec(function(err,map){
-        if(err){
-            res.status(500);
-            res.json({success:false,err:"!"+err});
-        }
-        else if(!map){
-            res.json({success:false, err:"map not found"});
-        }
-        else{
-            res.json({success:true,data:map});
-        }
-    });
-});
-router.get('/map_name/:map_name',function(req,res,next){
-    var database= app.get('database');
-    var Building = database.BuildingModel;
-   Building.find({map_name : req.params.map_name})
-   .sort({id:1})
-   .exec(function(err,building){
-       if(err){
-           res.status(500);
-           res.json({success:false, err:"!"+err});
-       }
-       else{
-           res.json({success:true, data:building})
-       }
-   });
-});
+
 };

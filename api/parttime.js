@@ -5,7 +5,7 @@ module.exports=function(app,router,database){
         var database= app.get('database');
         var Parttime = database.ParttimeModel;
         console.log(JSON.parse(req.body.update));
-         User.findOneAndUpdate({_id:req.params.id}, JSON.parse(req.body.update))
+         Parttime.findOneAndUpdate({_id:req.params.id}, JSON.parse(req.body.update))
          .exec(function(err,user){
              if(err){
                  res.status(500);

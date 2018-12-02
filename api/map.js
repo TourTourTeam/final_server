@@ -1,6 +1,24 @@
 
 module.exports=function(app,router,database){
 
+    router.get('/map/:map_id',function(req,res,next){
+        var database= app.get('database');
+        var Map = database.MapModel;
+        Map.findOne({map_id : req.params.map_id})
+        .exec(function(err,map){
+            if(err){
+                res.status(500);
+                res.json({success:false,err:"!"+err});
+            }
+            else if(!map){
+                res.json({success:false, err:"map not found"});
+            }
+            else{
+                res.json({success:true,data:map});
+            }
+        });
+    });
+  
 
 router.post('/delete/:id',function(req, res, next){
     var database= app.get('database');
